@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int maxFrequency(vector<int>& nums, int k) {
+
+        int left = 0 ; // left ptr
+        long long sum = 0 ; // sum of window
+        int ans = 0 ; // max freq 
+
+        sort(nums.begin() , nums.end()) ;
+
+        for (int right = 0 ; right<nums.size() ; right++){
+            sum = sum+nums[right] ; // update sum vale & expand window (window will expand in every iteration)
+
+            while((long long)nums[right]*(right-left+1)-sum > k){
+                sum = sum - nums[left] ; // shrink window if max K < our ans by formula 
+                left++ ;
+            }
+
+            ans = max(ans , right - left + 1) ;
+        }
+
+        return ans ;
+        
+        
+    }
+};
