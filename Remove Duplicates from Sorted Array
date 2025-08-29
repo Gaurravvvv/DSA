@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+
+    
+       set<int> result ;   // Make a set , it doesnt accept duplicate values .
+
+       result.insert(nums.begin() , nums.end()) ; // Add the vector elements in the set , dups wills automatically be removed .
+
+       nums.assign(result.begin() , result.end()) ; // assign removes all the previous elements of vector & inserts new values 
+
+       return nums.size() ; // return new size .
+    }
+
+};
