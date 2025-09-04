@@ -1,0 +1,51 @@
+// Optimal 
+
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+
+        unordered_map<long long , int> mp ;
+        long long prefix = 0 ;
+        int ans = 0 ;
+        mp[0] = 1 ;
+
+        for(int i = 0 ; i<nums.size() ; i++){
+
+            prefix = prefix + nums[i] ;
+
+
+            if(mp.count(prefix-k)){
+                ans = ans+mp[prefix-k] ;
+            }
+
+            mp[prefix]++;
+        }
+
+        return ans ;
+
+    }
+};
+
+
+// Brute - Brite force is actually every easy !!!
+
+int countsubarraywithsumk(vector<int>& arr , int k){
+    int n = arr.size() ;
+    int count = 0 ;
+
+    // check all subarrays
+    for(int i = 0 ; i<n ; i++){
+        for(int j = i ; j<n ; j++){
+            int sum = 0 ;
+            for(int g = i ; g<=j ; g++){
+                sum = sum + arr[g] ;
+            }
+            if(sum == k){
+                count++ ;
+            }
+        }
+    }
+
+    return count ;
+}
+
