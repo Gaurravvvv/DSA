@@ -1,0 +1,32 @@
+//Optimal Way
+// The logic here is , start iterating from right , if we get an element greater than the right most element 
+// it will definitely be a leader & then use that element as new Maxi
+
+#include <bits/stdc++.h>
+using namespace std ;
+
+vector<int> leaders(vector<int>& arr){
+    int n = arr.size();
+    vector<int> lead ;
+    int maxi = INT_MIN ;
+
+    for(int i = n-1 ; i>=0 ; i--){
+        if(arr[i]>maxi){
+            maxi = arr[i] ;
+            lead.push_back(arr[i]) ;
+        }
+    }
+
+    reverse(lead.begin() , lead.end());
+
+    return lead ;
+}
+
+int main(){
+    vector<int> arr = {16, 17, 4, 3, 5, 2} ;
+    vector<int> result = leaders(arr) ;
+
+    for(auto it : result){
+        cout << it << " " ;
+    }
+}
