@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        int n = nums.size();
+        sort(nums.begin() , nums.end()) ;
+        int lastsm = INT_MIN ;
+        int cnt = 0 ;
+        int longest = 1 ;
+
+        if(nums.empty()){
+            return 0 ;
+        }
+
+        for(int i = 0 ; i<n ; i++){
+            if(nums[i]-1 == lastsm){
+                cnt++ ;
+                lastsm=nums[i] ;
+            }
+            else if(nums[i]!=lastsm){
+                cnt = 1 ;
+                lastsm = nums[i] ;
+                }
+            longest = max(longest , cnt) ;
+        }
+
+        //longest = max(longest , cnt) ;
+
+        return longest ;
+        
+    }
+};
