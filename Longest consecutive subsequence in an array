@@ -2,25 +2,25 @@ class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
         int n = nums.size();
-        sort(nums.begin() , nums.end()) ;
+        sort(nums.begin() , nums.end()) ; // Sort
         int lastsm = INT_MIN ;
         int cnt = 0 ;
         int longest = 1 ;
 
         if(nums.empty()){
-            return 0 ;
+            return 0 ; // If empty return 0 ;
         }
 
         for(int i = 0 ; i<n ; i++){
-            if(nums[i]-1 == lastsm){
+            if(nums[i]-1 == lastsm){ // if the consecutive subsequence exists , cnt++ , update last smaller .
                 cnt++ ;
                 lastsm=nums[i] ;
             }
             else if(nums[i]!=lastsm){
                 cnt = 1 ;
-                lastsm = nums[i] ;
+                lastsm = nums[i] ; // if it doesnt , reset cnt to 1 & take new element as last smaller 
                 }
-            longest = max(longest , cnt) ;
+            longest = max(longest , cnt) ; // ans will be max of current value or previos value 
         }
 
         //longest = max(longest , cnt) ;
