@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std ;
+
+void binary(vector<int>& arr , int low , int high ,int target){
+    int mid = (low+high)/2 ;
+    if(low>high){
+        cout << "Target not found ." ;
+        return ;
+    }
+    
+    if(target==arr[mid]){
+        cout << "Found at index : " << mid ;
+        return ;
+    }
+    else if(target > arr[mid]){
+        binary(arr ,mid+1 ,high ,target) ;
+    }
+    else{
+        binary(arr ,low ,mid-1 ,target) ;
+    }
+}
+
+int main(){
+    int n ;
+    cout << "Size of arr : " ;
+    cin >> n ;
+    vector<int> arr(n) ;
+    //cout << "Size of arr : " ;
+    for(int i = 0 ; i<n ; i++){
+        cin >> arr[i] ;
+    }
+    cout << "Array (Strictly Sorted Order) : " ;
+    for(auto it : arr){
+        cout << it << " " ;
+    }
+    //int n = arr.size() ;
+    int low = 0 ;
+    int high = n-1 ;
+    cout << endl ;
+    cout << "Target : " ;
+    int target ;
+    cin >> target ;
+    binary(arr,low,high,target) ;
+
+}
