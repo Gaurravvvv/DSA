@@ -1,0 +1,66 @@
+#include<iostream>
+#include<algorithm>
+#include<cstdlib>
+using namespace std ;
+
+struct node{
+    int data ;
+    node* left ;
+    node* right ;
+
+    node(int val){
+        data = val ;
+        left = right = nullptr ;
+    }
+};
+
+
+int height(node* root){
+    if(root == nullptr){
+        return 0 ;
+    }
+
+    int lh = height(root->left);
+    int rh = height(root->right);
+
+    return 1+max(lh,rh);
+
+}
+
+bool check(node* root){
+    if(root==nullptr){
+        return true ;
+    }
+
+    int lh = height(root->left);
+    int rh = height(root->right);
+
+    if(abs(lh-rh)>1){
+        return false ;
+    }
+    
+    bool leftside = check(root->left);
+    bool rightside = check(root->right);
+
+
+    return leftside && rightside ;
+}
+
+int main(){
+
+    node* root = new node(1);
+    root->left = new node(2);
+    root->right = new node(3);
+    root->left->left = new node(4);
+    root->left->left->left = new node(80);
+
+    if(check(root)){
+        cout << "Tree is Balancedd " ;
+    }else{
+        cout << "Tree is not Balanced " ;
+    }
+
+    return 0;
+
+
+}
